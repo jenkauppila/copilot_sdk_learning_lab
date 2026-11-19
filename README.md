@@ -17,12 +17,12 @@ The project progresses incrementally through the five official quickstart stages
 
 ## The Examples
 
-| File | Purpose |
-| --- | --- |
-| [`main.py`](main.py) | Step 4: demonstrates the custom-tool and streaming example with a single prompt asking about Seattle and Tokyo |
-| [`weather_assistant.py`](weather_assistant.py) | Step 5: adds an interactive terminal loop to the same streaming, custom-tool session |
-| [`requirements.txt`](requirements.txt) | Pins the Python dependencies used by the project |
-| [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | Repository-specific guidance for continuing the learning project |
+| File                                                                 | Purpose                                                                                                        |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| [`main.py`](main.py)                                                 | Step 4: demonstrates the custom-tool and streaming example with a single prompt asking about Seattle and Tokyo |
+| [`weather_assistant.py`](weather_assistant.py)                       | Step 5: adds an interactive terminal loop to the same streaming, custom-tool session                           |
+| [`requirements.txt`](requirements.txt)                               | Pins the Python dependencies used by the project                                                               |
+| [`.github/copilot-instructions.md`](.github/copilot-instructions.md) | Repository-specific guidance for continuing the learning project                                               |
 
 The virtual environment and local cache directories are intentionally excluded from version control.
 
@@ -44,14 +44,14 @@ The dependency was migrated to `microsoft-copilot-sdk==2.0.1`, and the implement
 
 The implementation was adapted rather than assuming every tutorial line works unchanged:
 
-| Tutorial concept | SDK 2.0.1 implementation |
-| --- | --- |
-| Constructing a client | `CopilotClient(mode="coding-agent")` |
-| Approving permissions | `permissions={"on_request": PermissionHandler.approve_all}` |
-| Enabling streaming | `events={"streaming": True}` |
-| Registering custom tools | `tools={"definitions": [get_weather]}` |
-| Stopping the client/session | `async with` context managers |
-| Reusing one session | The interactive loop calls `send_and_wait()` repeatedly |
+| Tutorial concept            | SDK 2.0.1 implementation                                    |
+| --------------------------- | ----------------------------------------------------------- |
+| Constructing a client       | `CopilotClient(mode="coding-agent")`                        |
+| Approving permissions       | `permissions={"on_request": PermissionHandler.approve_all}` |
+| Enabling streaming          | `events={"streaming": True}`                                |
+| Registering custom tools    | `tools={"definitions": [get_weather]}`                      |
+| Stopping the client/session | `async with` context managers                               |
+| Reusing one session         | The interactive loop calls `send_and_wait()` repeatedly     |
 
 The original tutorial examples do not become universally invalid: the mismatch depends on the SDK package and release being used. This repository documents and implements the APIs verified for `microsoft-copilot-sdk==2.0.1`.
 
@@ -141,3 +141,9 @@ Type `exit`, press `Ctrl+D`, or press `Ctrl+C` to leave the interactive program.
 ## Reference
 
 - [Official GitHub Copilot SDK quickstart](https://docs.github.com/en/copilot/get-started/sdk-quickstart)
+
+## Upstream Documentation Contribution
+
+While completing the official GitHub Copilot SDK quickstart, I identified and resolved compatibility differences between the documented Python examples and SDK 2.0.1.
+
+I reported these findings in [GitHub Docs Issue #47003](https://github.com/github/docs/issues/47003), including a reproducible error, a working implementation, and proposed documentation improvements.
