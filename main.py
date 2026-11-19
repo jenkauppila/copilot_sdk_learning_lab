@@ -1,19 +1,21 @@
 import asyncio
+
 from copilot import CopilotClient
-from copilot.session import PermissionHandler
 
 
 async def main():
-    client = CopilotClient()
-    await client.start()
+    async with CopilotClient(mode="coding-agent") as client:
+        async with await client.create_session(
+            model="auto",
+            tools={"available_tools": []},
+        ) as session:
+            response = await session.send_and_wait("What is 2 + 2?")
 
-    session = await client.create_session(
-        on_permission_request=PermissionHandler.approve_all, model="auto"
-    )
-    response = await session.send_and_wait("What is 2 + 2?")
-    print(response.data.content)
-
-    await client.stop()
+            if response and response.data.content:
+                print("Copilot:", response.data.content)
+            else:
+                print("No text response received.")
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
